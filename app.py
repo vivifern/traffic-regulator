@@ -32,7 +32,7 @@ def remove_admin():
 	mob_number=request.form['mob_number']
 	
 	rmAdmin=Admins.query.filter_by(MOBILE_NUMBER=mob_number).first()
-	if(rmAdmin.ADMIN_USER_NAME==user_name):
+	if(rmAdmin.ADMIN_USER_NAME==user_name and user_name!="root"):
 		
 		db.session.delete(rmAdmin)
 		db.session.commit()
@@ -124,8 +124,6 @@ def add_user_control():
 	mobile_number=request.form['mobile_number']
 	email_address=request.form['email_address']
 	pin=request.form['pin']
-    
-	car_number=state_code+"-"+number_code+"-"+area_code+"-"+pin
 	
 	verbose="User could not be Added"
 
