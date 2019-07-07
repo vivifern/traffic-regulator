@@ -279,18 +279,6 @@ def route_returnHome():
 	
 	return render_template('root-home.html')
 	
-@app.route('/UploadFile',methods=['POST','GET'])
-def uploadFile():
-	
-	return render_template('fileUpload.html')
-	
-@app.route('/DoneFile',methods=['POST','GET'])
-def donefile():
-
-	time.sleep(10)
-	addVoilations(1,'KL-01-CC-5919','ChurchGate')
-	return render_template('cheat.html')
-	
 class Admins(db.Model):
 
 	ADM_NO=db.Column(db.Integer,primary_key=True)
@@ -340,7 +328,32 @@ class Violations(db.Model):
 		self.CAR_NO=CAR_NO
 		self.LOC_NAME=LOC_NAME
 		self.FINE_AMOUNT=FINE_AMOUNT
+		
+class Locations(db.Model):
 
+	LOC_NO=db.Column(db.Integer,primary_key=True)
+	LOC_NAME=db.Column(db.String(30),unique=False)
+	
+	def __init__(self,LOC_NO,LOC_NAME):
+	
+		self.LOC_NO=LOC_NO
+		self.LOC_NAME=LOC_NAME
+
+@app.route('/UploadFile',methods=['POST','GET'])
+def uploadFile():
+	
+	return render_template('fileUpload.html')
+	
+@app.route('/DoneFile',methods=['POST','GET'])
+def donefile():
+
+	time.sleep(10)
+	#addVoilations(1,'KL-01-CC-5919','ChurchGate')
+	locationRec=Violations(1,"CHURCHGATE")
+	voilTest=Violations.query.order_by(Violations.LOC_NO.desc()).first()
+	verboce=voilTest.LOC_NO
+	return render_template('cheat.html',verboce=verboce)
+		
 def adminLogin(username,password):
 	
 	adminsTest=Admins.query.filter_by(ADMIN_USER_NAME=username).first()

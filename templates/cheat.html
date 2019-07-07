@@ -1,14 +1,16 @@
 <html>
   <head>
     <title></title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/cheat-css.css.jpg')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/cheat-css.css)}}">
   </head>
+  <body>
+  {% if verboce>=1 %}
 	<div class="wrapper">
-		<div class="items item1"><center><img src="{{ url_for('static',filename='images/1.jpg.jpg')}}" class="imgsrc1"></center></div>
-		<div class="items item2"><center><img src="{{ url_for('static',filename='images/1_1.jpg.jpg')}}" class="imgsrc2"></center></div>
-		<div class="items item3"><center><img src="{{ url_for('static',filename='images/1_2.jpg.jpg.jpg')}}" class="imgsrc3"></center></div>
-		<div class="items item3"><center><img src="{{ url_for('static',filename='images/1_3.jpg.jpg')}}" class="imgsrc4"></center></div>
-		<div class="items item1"><center><img src="{{ url_for('static',filename='images/2.jpg.jpg')}}" class="imgsrc1"></center></div>
+		<div class="items item1"><center><img src="{{ url_for('static',filename='images/1.jpg')}}" class="imgsrc1"></center></div>
+		<div class="items item2"><center><img src="{{ url_for('static',filename='images/1_1.jpg')}}" class="imgsrc2"></center></div>
+		<div class="items item3"><center><img src="{{ url_for('static',filename='images/1_2.jpg')}}" class="imgsrc3"></center></div>
+		<div class="items item3"><center><img src="{{ url_for('static',filename='images/1_3.jpg')}}" class="imgsrc4"></center></div>
+		<div class="items item1"><center><img src="{{ url_for('static',filename='images/2.jpg')}}" class="imgsrc1"></center></div>
 		<div class="items item2"><center><img src="{{ url_for('static',filename='images/2_1.jpg')}}" class="imgsrc2"></center></div>
 		<div class="items item3"><center><img src="{{ url_for('static',filename='images/2_2.jpg')}}" class="imgsrc3"></center></div>
 		<div class="items item3"><center><img src="{{ url_for('static',filename='images/2_3.jpg')}}" class="imgsrc4"></center></div>
@@ -37,5 +39,6 @@
 		<div class="items item3"><center><img src="{{ url_for('static',filename='images/8_2.jpg')}}" class="imgsrc3"></center></div>
 		<div class="items item3"><center><img src="{{ url_for('static',filename='images/8_3.jpg')}}" class="imgsrc4"></center></div>
 	</div>
+	{% endif %}
 	</body>
 </html>
