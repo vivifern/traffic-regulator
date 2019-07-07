@@ -74,17 +74,23 @@ def admin_login():
 	verbose=""
 	
 	adminsTest=Admins.query.filter_by(ADMIN_USER_NAME=username).first()
-		
-	if(adminsTest.ADMIN_USER_NAME!=username or adminsTest.ADMIN_PASSWORD!=password):
-		
-		verbose="Incorrect Username or Password, Please re-enter your Details!!!"
-		return render_template('admin-login.html',verbose=verbose)
-
-	elif(adminsTest.ADMIN_USER_NAME==username and adminsTest.ADMIN_PASSWORD==password):
-		
-		return render_template('root-home.html')
 	
-
+	try:
+		
+		if(adminsTest.ADMIN_USER_NAME!=username or adminsTest.ADMIN_PASSWORD!=password):
+			
+			verbose="Incorrect Username or Password, Please re-enter your Details!!!"
+			return render_template('admin-login.html',verbose=verbose)
+	
+		elif(adminsTest.ADMIN_USER_NAME==username and adminsTest.ADMIN_PASSWORD==password):
+			
+			return render_template('root-home.html')
+			
+	except AttributeError:
+	
+		verbose="Incorrect Username or Password, Please re-enter your Details!!!"
+        return render_template('admin-login.html',verbose=verbose)
+		
 @app.route('/add_admin_control',methods=['POST','GET'])
 def add_admin_control():
 #
