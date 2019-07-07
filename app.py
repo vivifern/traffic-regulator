@@ -353,8 +353,8 @@ def donefile():
 	db.session.add(locationRec)
 	db.session.commit()
 	voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
-	verboce=voilTest.LOC_NO
-	return render_template('cheat.html',verboce=verboce)
+	#verboce=voilTest.LOC_NO
+	return render_template('cheat.html',voilTest=voilTest)
 		
 def adminLogin(username,password):
 	
