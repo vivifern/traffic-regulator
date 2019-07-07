@@ -13,10 +13,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 db=SQLAlchemy(app)
 
-def auth_required(f):
-	@wraps(f)
-	def decorated(
-
 @app.route('/',methods = ['POST', 'GET'])
 def index():
 	
