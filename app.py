@@ -123,9 +123,6 @@ def add_user_control():
 	name_of_user=request.form['name_of_user']
 	mobile_number=request.form['mobile_number']
 	email_address=request.form['email_address']
-	state_code=request.form['state_code']
-	number_code=request.form['number_code']
-	area_code=request.form['area_code']
 	pin=request.form['pin']
     
 	car_number=state_code+"-"+number_code+"-"+area_code+"-"+pin
@@ -182,22 +179,8 @@ def update_user():
 
 	dropDown1=request.form['dropDwn1']
 	mob_number=request.form['mob_number']
-	usr_name=""
-	state_code=""
-	number_code=""
-	area_code=""
-	pin=""
-	
-	if(dropDown1!="car_number"):
+	usr_name=request.form['usr_name']
 		
-		usr_name=request.form['usr_name']
-		
-	elif(dropDown1=="car_number"):
-		state_code=request.form['state_code']
-		number_code=request.form['number_code']
-		area_code=request.form['area_code']
-		pin=request.form['pin']
-	
 	userDetails=Users.query.filter_by(MOBILE_NUMBER=mob_number).first()
 	
 	if(dropDown1=="name"):
@@ -224,8 +207,7 @@ def update_user():
 		
 	elif(dropDown1=="car_number"):
 		
-		car_no=state_code+"-"+number_code+"-"+area_code+"-"+pin
-		userDetails.CAR_NO=car_no
+		userDetails.CAR_NO=usr_name
 		db.session.commit()
 		updatedUserDetails=Users.query.filter_by(MOBILE_NUMBER=mob_number).first()
 		verbose="Updated details for User "+updatedUserDetails.NAME_OF_USER+" Corrected/New Car Number: "+updatedUserDetails.CAR_NO
