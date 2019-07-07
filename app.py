@@ -298,11 +298,11 @@ def uploadFile():
 	return render_template('fileUpload.html')
 	
 @app.route('/DoneFile',methods=['POST','GET'])
-def uploadFile():
+def donefile():
 
 	time.sleep(10)
 	addVoilations(1,'KL-01-CC-5919','ChurchGate')
-	return render_template('fileUpload.html')
+	return render_template('cheat.html')
 	
 class Admins(db.Model):
 
