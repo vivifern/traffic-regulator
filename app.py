@@ -348,7 +348,7 @@ def uploadFile():
 def donefile():
 
 	time.sleep(10)
-	#addVoilations(1,'KL-01-CC-5919','ChurchGate')
+	addVoilations(1,'KL-01-CC-5919','ChurchGate')
 	locationRec=Violations(1,"CHURCHGATE")
 	voilTest=Violations.query.order_by(Violations.LOC_NO.desc()).first()
 	verboce=voilTest.LOC_NO
