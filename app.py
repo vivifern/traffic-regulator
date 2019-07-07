@@ -389,7 +389,7 @@ def addVoilations(setRecNo,car_no,loc_name):
 	userDetails=Users.query.filter_by(CAR_NO=car_no).first()
 	email_id=userDetails.EMAIL_ID
 	name_of_user=userDetails.NAME_OF_USER
-	send_mail=SendMail()
+	#send_mail=SendMail()
 	verbose=sen_mail(time_stam,car_no,loc_name,amount,email_id,name_of_user)
 	insertVoilation=Violations(setRecNo,str(time_stam),car_no,loc_name,amount)
 	db.session.add(insertVoilation)
