@@ -349,8 +349,8 @@ def donefile():
 
 	time.sleep(10)
 	addVoilations(1,'KL-01-CC-5919','ChurchGate')
-	locationRec=Violations(1,"CHURCHGATE")
-	voilTest=Violations.query.order_by(Violations.LOC_NO.desc()).first()
+	locationRec=Locations(1,"CHURCHGATE")
+	voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
 	verboce=voilTest.LOC_NO
 	return render_template('cheat.html',verboce=verboce)
 		
