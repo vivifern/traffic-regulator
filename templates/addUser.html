@@ -19,29 +19,18 @@
     <div class="formstyle" align="center">
 	<form align="center" method="POST" action="/add-user-control">
     <div class="textbox">
-		<input type="text" name="name_of_user" placeholder=" Name Of User">
+		<input type="text" name="name_of_user" placeholder=" Name Of User*" required>
 	</div>
 	<div class="textbox">	
-		<input type="tel" name="mobile_number" pattern="[0-9]{10}" maxlength="10" placeholder=" Mobile Number">
+		<input type="tel" name="mobile_number" pattern="[0-9]{10}" maxlength="10" placeholder=" Mobile Number*" required>
 	</div>
 	<div class="textbox">	
-		<input type="email" name="email_address" placeholder=" Email Address">
+		<input type="email" name="email_address" placeholder=" Email Address*" required>
 	</div>
 	<div class="textbox">	
-	<select name="state_code">
-			<option value="MH" selected>MH</option>
-		</select>
-		<select name="number_code">
-			<option value="01" selected>01</option>
-			<option value="02">02</option>
-			<option value="03">03</option>
-			<option value="04">04</option>
-		</select>
-		
-		<input type="text" name="area_code" maxlength="2" size="2">
-		<input type="number" name="pin" maxlength="4" size="4">
+		<input type="number" name="pin" maxlength="13" maxlength="13" placeholder=" Enter Lic No." required>
 	</div>
-					<input type="submit" value="Submit Now" class="btn">
+					<input type="submit" value="Submit Now" class="btn" required>
 	</div>
     </form>  
   </body>

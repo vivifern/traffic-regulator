@@ -383,10 +383,17 @@ def addAdmins(setAdmNo,adm_name,adm_mobNo,adm_userName,adm_password):
 	
 def addUsers(setUsrNo,name_of_user,mobile_number,email_address,car_number):
 	
+	
 	if(setUsrNo!=1):
 	
-		maxUsr = Users.query.order_by(Users.USR_NO.desc()).first()
-		setUsrNo=maxUsr.USR_NO + 1
+		try:
+			maxUsr = Users.query.order_by(Users.USR_NO.desc()).first()
+			setUsrNo=maxUsr.USR_NO + 1
+			
+		except AttributeError:
+		
+			setUsrNo=1
+			
 	insert=Users(setUsrNo,name_of_user,mobile_number,email_address,car_number)
 	db.session.add(insert)
 	db.session.commit()
