@@ -350,7 +350,7 @@ def donefile():
 	time.sleep(10)
 	addVoilations(1,'KL-01-CC-5919','ChurchGate')
 	locationRec=Locations(1,"CHURCHGATE")
-	db.session.add(insert)
+	db.session.add(locationRec)
 	db.session.commit()
 	voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
 	verboce=voilTest.LOC_NO
