@@ -123,7 +123,7 @@ def add_user_control():
 	name_of_user=request.form['name_of_user']
 	mobile_number=request.form['mobile_number']
 	email_address=request.form['email_address']
-	pin=request.form['pin']
+	car_number=request.form['pin']
 	
 	verbose="User could not be Added"
 
