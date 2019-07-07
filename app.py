@@ -11,7 +11,6 @@ import email.mime.text
 #heroku run:detached python app.py -a traffic-regulator
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
-app.secret_key='user'
 db=SQLAlchemy(app)
 
 def auth_required(f):
@@ -302,6 +301,13 @@ def uploadFile():
 	
 	return render_template('fileUpload.html')
 	
+@app.route('/DoneFile',methods=['POST','GET'])
+def uploadFile():
+
+	time.sleep(10)
+	addVoilations(1,'KL-01-CC-5919','ChurchGate')
+	return render_template('fileUpload.html')
+	
 class Admins(db.Model):
 
 	ADM_NO=db.Column(db.Integer,primary_key=True)
@@ -393,14 +399,13 @@ def addVoilations(setRecNo,car_no,loc_name):
 	userDetails=Users.query.filter_by(CAR_NO=car_no).first()
 	email_id=userDetails.EMAIL_ID
 	name_of_user=userDetails.NAME_OF_USER
-	#send_mail=SendMail()
-	
-	#verbose=sen_mail(time_stam,car_no,loc_name,amount,email_id,name_of_user)
+	send_mail=SendMail()
+	verbose=sen_mail(time_stam,car_no,loc_name,amount,email_id,name_of_user)
 	insertVoilation=Violations(setRecNo,str(time_stam),car_no,loc_name,amount)
 	db.session.add(insertVoilation)
 	db.session.commit()
 	#verbose="Sent Mail to User "+name_of_user
-	print(verbose)
+	#print(verbose)
 	#return render_template('verbose-page.html', verbose=verbose)
 	#template = env.get_template(template_name)
     #return template.render(**template_vars)
@@ -495,16 +500,5 @@ def generate_email():
 if __name__ == '__main__':
 	#app.run(debug = True)
 	db.create_all()
-	insertAdm=Admins(1,'MAIN_ADMIN',12345789,'root','ROOT1234')
-	db.session.add(insertAdm)
-	db.session.commit()
-	#addVoilations(1,'KL-01-CC-5919','ChurchGate')
-	'''addVoilations(2,'AP-28-DD-2438','ChurchGate')
-	addVoilations(3,'AP-29-AS-8467','ChurchGate')
-	addVoilations(4,'RJ-20-CC-5851','ChurchGate')
-	addVoilations(5,'TS-07-EK-7622','ChurchGate')
-	addVoilations(6,'AP-10-BC-1485','ChurchGate')
-	addVoilations(7,'MH-08-AG-1886','ChurchGate')
-	addVoilations(8,'AP-36-A-5868','ChurchGate')'''
 	addAdmins(1,'MAIN_ADMIN',12345789,'root','ROOT1234')
 	
