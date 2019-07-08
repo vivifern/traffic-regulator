@@ -370,6 +370,10 @@ def donefile():
 			#verboce=voilTest.LOC_NO
 			return render_template('cheat.html')
 	
+	except FlushError:
+		
+		return render_template('cheat.html')
+	
 	except:
 	
 		locationRec=Locations(1,"CHURCHGATE")
