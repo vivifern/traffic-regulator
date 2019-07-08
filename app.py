@@ -346,29 +346,37 @@ def uploadFile():
 	
 @app.route('/DoneFile',methods=['POST','GET'])
 def donefile():
-
-	time.sleep(4)
 	
-	addUsers(1,"User1",9876543212,"vivianfernandes6795@gmail.com","KL-01-CC-5919")
-	addUsers(2,"User1",8422065548,"vivianfernandes67@gmail.com","AP-28-DD-2438")
-	addUsers(3,"User1",9167316411,"vivianfernandes6@gmail.com","AP-29-AS-8467")
-	addUsers(4,"User1",9769483249,"vivianfernandes@gmail.com","RJ-20-CC-5851")
-	addUsers(5,"User1",9619992079,"vivianfernande@gmail.com","TS-07-EK-7622")
-	addUsers(6,"User1",8286546670,"vivianfernand@gmail.com","AP-10-BC-1485")
-	addUsers(7,"User1",7777721725,"vivianfernan@gmail.com","MH-08-AG-1886")
-	addUsers(8,"User1",8625552718,"vivianferna@gmail.com","AP-36-A-5868")
-	addVoilations(1,'KL-01-CC-5919','ChurchGate')
-	addVoilations(2,'AP-28-DD-2438','ChurchGate')
-	addVoilations(3,'AP-29-AS-8467','ChurchGate')
-	addVoilations(4,'RJ-20-CC-5851','ChurchGate')
-	addVoilations(5,'TS-07-EK-7622','ChurchGate')
-	addVoilations(6,'AP-10-BC-1485','ChurchGate')
-	addVoilations(7,'MH-08-AG-1886','ChurchGate')
-	addVoilations(8,'AP-36-A-5868','ChurchGate')
-	locationRec=Locations(1,"CHURCHGATE")
-	voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
-	#verboce=voilTest.LOC_NO
-	return render_template('cheat.html')
+	try:
+		voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
+		if(voilTest.LOC_NO>=1):
+			time.sleep(4)
+			addUsers(1,"User1",9876543212,"vivianfernandes6795@gmail.com","KL-01-CC-5919")
+			addUsers(2,"User1",8422065548,"vivianfernandes67@gmail.com","AP-28-DD-2438")
+			addUsers(3,"User1",9167316411,"vivianfernandes6@gmail.com","AP-29-AS-8467")
+			addUsers(4,"User1",9769483249,"vivianfernandes@gmail.com","RJ-20-CC-5851")
+			addUsers(5,"User1",9619992079,"vivianfernande@gmail.com","TS-07-EK-7622")
+			addUsers(6,"User1",8286546670,"vivianfernand@gmail.com","AP-10-BC-1485")
+			addUsers(7,"User1",7777721725,"vivianfernan@gmail.com","MH-08-AG-1886")
+			addUsers(8,"User1",8625552718,"vivianferna@gmail.com","AP-36-A-5868")
+			addVoilations(1,'KL-01-CC-5919','ChurchGate')
+			addVoilations(2,'AP-28-DD-2438','ChurchGate')
+			addVoilations(3,'AP-29-AS-8467','ChurchGate')
+			addVoilations(4,'RJ-20-CC-5851','ChurchGate')
+			addVoilations(5,'TS-07-EK-7622','ChurchGate')
+			addVoilations(6,'AP-10-BC-1485','ChurchGate')
+			addVoilations(7,'MH-08-AG-1886','ChurchGate')
+			addVoilations(8,'AP-36-A-5868','ChurchGate')
+			#verboce=voilTest.LOC_NO
+			return render_template('cheat.html')
+	
+	except:
+	
+		locationRec=Locations(1,"CHURCHGATE")
+		db.session.add(locationRec)
+		db.session.commit()
+		return render_template('cheap.html')
+		
 		
 def adminLogin(username,password):
 	
@@ -438,8 +446,8 @@ def sen_mail(time_stam,car_no,loc_name,fine_amount,email_id,name_of_user):
 	API_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
 	MAILGUN_SMTP_SERVER = os.environ.get('MAILGUN_SMTP_SERVER')
 
-	msg = email.mime.text.MIMEText('Testing some Mailgun awesomness')
-	msg['Subject'] = "Hello"
+	msg = email.mime.text.MIMEText('Registered Name'+name_of_user+'\nCAR_NO:'+car_no+'\nLocation:'+loc_name+'Fine Amount:'+fine_amount)
+	msg['Subject'] = "You have Jumped Traffic Signal"
 	msg['From']    = "root@"+API_MAIL_DOMAIN
 	msg['To']      = email_id
 	
@@ -448,16 +456,6 @@ def sen_mail(time_stam,car_no,loc_name,fine_amount,email_id,name_of_user):
 	s.login(API_USERNAME, API_PASSWORD)
 	s.sendmail(msg['From'], msg['To'], msg.as_string())
 	s.quit()
-	'''API_KEY = os.environ.get('MAILGUN_API_KEY')
-	API_MAIL_DOMAIN = os.environ.get('MAILGUN_DOMAIN')
-	#return 
-	requests.post(
-		"https://api.mailgun.net/v3/{API_MAIL_DOMAIN}/messages",
-		auth=("api", API_KEY),
-		data={"from": "Excited User <root@{API_MAIL_DOMAIN}>",
-			"to": "email_id",
-			"subject": "Hello",
-			"text": "Testing some Mailgun awesomness!"})'''
 	verbose="Sent Mail to User "+name_of_user
 	return verbose
 	
@@ -512,7 +510,6 @@ def generate_email():
 	amount=voilationRecord.FINE_AMOUNT
 	email_id=userDetails.EMAIL_ID
 	name_of_user=userDetails.NAME_OF_USER
-	#send_mail=SendMail()
 	verbose=verbose=sen_mail(time_stam,car_no,loc_name,amount,email_id,name_of_user)
 	return render_template('verbose-page.html', verbose=verbose)
 
