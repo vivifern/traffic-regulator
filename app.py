@@ -347,11 +347,16 @@ def uploadFile():
 @app.route('/DoneFile',methods=['POST','GET'])
 def donefile():
 
-	time.sleep(10)
+	time.sleep(4)
 	addVoilations(1,'KL-01-CC-5919','ChurchGate')
+	addVoilations(2,'AP-28-DD-2438','ChurchGate')
+	addVoilations(3,'AP-29-AS-8467','ChurchGate')
+	addVoilations(4,'RJ-20-CC-5851','ChurchGate')
+	addVoilations(5,'TS-07-EK-7622','ChurchGate')
+	addVoilations(6,'AP-10-BC-1485','ChurchGate')
+	addVoilations(7,'MH-08-AG-1886','ChurchGate')
+	addVoilations(8,'AP-36-A-5868','ChurchGate')
 	locationRec=Locations(1,"CHURCHGATE")
-	db.session.add(locationRec)
-	db.session.commit()
 	voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
 	#verboce=voilTest.LOC_NO
 	return render_template('cheat.html')
