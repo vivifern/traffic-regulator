@@ -348,6 +348,15 @@ def uploadFile():
 def donefile():
 
 	time.sleep(4)
+	
+	addUsers(1,"User1",9876543212,"vivianfernandes6795@gmail.com","KL-01-CC-5919")
+	addUsers(2,"User1",8422065548,"vivianfernandes67@gmail.com","AP-28-DD-2438")
+	addUsers(3,"User1",9167316411,"vivianfernandes6@gmail.com","AP-29-AS-8467")
+	addUsers(4,"User1",9769483249,"vivianfernandes@gmail.com","RJ-20-CC-5851")
+	addUsers(5,"User1",9619992079,"vivianfernande@gmail.com","TS-07-EK-7622")
+	addUsers(6,"User1",8286546670,"vivianfernand@gmail.com","AP-10-BC-1485")
+	addUsers(7,"User1",7777721725,"vivianfernan@gmail.com","MH-08-AG-1886")
+	addUsers(8,"User1",8625552718,"vivianferna@gmail.com","AP-36-A-5868")
 	addVoilations(1,'KL-01-CC-5919','ChurchGate')
 	addVoilations(2,'AP-28-DD-2438','ChurchGate')
 	addVoilations(3,'AP-29-AS-8467','ChurchGate')
