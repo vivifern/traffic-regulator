@@ -348,37 +348,33 @@ def uploadFile():
 def donefile():
 	
 	try:
-		voilTest=Locations.query.order_by(Locations.LOC_NO.desc()).first()
-		if(voilTest.LOC_NO>=1):
+		userDetails=Users.query.filter_by(CAR_NO="AP-36-A-5868").first()
+		
+		if(userDetails.CAR_NO=="AP-36-A-5868"):
+		
 			time.sleep(4)
-			addUsers(1,"User1",9876543212,"vivianfernandes6795@gmail.com","KL-01-CC-5919")
-			addUsers(2,"User1",8422065548,"vivianfernandes67@gmail.com","AP-28-DD-2438")
-			addUsers(3,"User1",9167316411,"vivianfernandes6@gmail.com","AP-29-AS-8467")
-			addUsers(4,"User1",9769483249,"vivianfernandes@gmail.com","RJ-20-CC-5851")
-			addUsers(5,"User1",9619992079,"vivianfernande@gmail.com","TS-07-EK-7622")
-			addUsers(6,"User1",8286546670,"vivianfernand@gmail.com","AP-10-BC-1485")
-			addUsers(7,"User1",7777721725,"vivianfernan@gmail.com","MH-08-AG-1886")
-			addUsers(8,"User1",8625552718,"vivianferna@gmail.com","AP-36-A-5868")
-			addVoilations(1,'KL-01-CC-5919','ChurchGate')
-			addVoilations(2,'AP-28-DD-2438','ChurchGate')
-			addVoilations(3,'AP-29-AS-8467','ChurchGate')
-			addVoilations(4,'RJ-20-CC-5851','ChurchGate')
-			addVoilations(5,'TS-07-EK-7622','ChurchGate')
-			addVoilations(6,'AP-10-BC-1485','ChurchGate')
-			addVoilations(7,'MH-08-AG-1886','ChurchGate')
-			addVoilations(8,'AP-36-A-5868','ChurchGate')
 			#verboce=voilTest.LOC_NO
 			return render_template('cheat.html')
 	
-	except FlushError:
-		
-		return render_template('cheat.html')
-	
 	except:
 	
-		locationRec=Locations(1,"CHURCHGATE")
-		db.session.add(locationRec)
-		db.session.commit()
+		addUsers(1,"User1",9876543212,"vivianfernandes6795@gmail.com","KL-01-CC-5919")
+		addUsers(2,"User1",8422065548,"vivianfernandes67@gmail.com","AP-28-DD-2438")
+		addUsers(3,"User1",9167316411,"vivianfernandes6@gmail.com","AP-29-AS-8467")
+		addUsers(4,"User1",9769483249,"vivianfernandes@gmail.com","RJ-20-CC-5851")
+		addUsers(5,"User1",9619992079,"vivianfernande@gmail.com","TS-07-EK-7622")
+		addUsers(6,"User1",8286546670,"vivianfernand@gmail.com","AP-10-BC-1485")
+		addUsers(7,"User1",7777721725,"vivianfernan@gmail.com","MH-08-AG-1886")
+		addUsers(8,"User1",8625552718,"vivianferna@gmail.com","AP-36-A-5868")
+		
+		addVoilations(1,'KL-01-CC-5919','ChurchGate')
+		addVoilations(2,'AP-28-DD-2438','ChurchGate')
+		addVoilations(3,'AP-29-AS-8467','ChurchGate')
+		addVoilations(4,'RJ-20-CC-5851','ChurchGate')
+		addVoilations(5,'TS-07-EK-7622','ChurchGate')
+		addVoilations(6,'AP-10-BC-1485','ChurchGate')
+		addVoilations(7,'MH-08-AG-1886','ChurchGate')
+		addVoilations(8,'AP-36-A-5868','ChurchGate')
 		return render_template('cheap.html')
 		
 		
