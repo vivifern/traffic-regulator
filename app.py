@@ -344,6 +344,10 @@ def uploadFile():
 	
 	return render_template('fileUpload.html')
 	
+@app.route('/check',methods=['POST','GET'])
+def check():
+	return render_template('cheat.html')
+	
 @app.route('/DoneFile',methods=['POST','GET'])
 def donefile():
 	
@@ -446,7 +450,7 @@ def sen_mail(time_stam,car_no,loc_name,fine_amount,email_id,name_of_user):
 	API_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
 	MAILGUN_SMTP_SERVER = os.environ.get('MAILGUN_SMTP_SERVER')
 
-	msg = email.mime.text.MIMEText('Registered Name'+name_of_user+'\nCAR_NO:'+car_no+'\nLocation:'+loc_name+'Fine Amount:'+fine_amount)
+	msg = email.mime.text.MIMEText('Registered Name'+name_of_user+'\nCAR_NO:'+car_no+'\nLocation:'+loc_name+'Fine Amount:'+str(fine_amount))
 	msg['Subject'] = "You have Jumped Traffic Signal"
 	msg['From']    = "root@"+API_MAIL_DOMAIN
 	msg['To']      = email_id
